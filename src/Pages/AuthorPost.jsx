@@ -2,7 +2,9 @@ import React from 'react'
 
 const AuthorPost = () => {
   return (
-    <div>AuthorPost</div>
+    <>
+    <h1>lorem</h1>
+    </>
   )
 }
 
