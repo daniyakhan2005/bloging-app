@@ -1,93 +1,51 @@
-
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import {  createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Layout from './Layout'
-import Home from './Pages/Home'
-import LoginPage from './Pages/LoginPage'
-import Register from './Pages/Register'
-import Author from './Pages/Author'
-import AuthorPost from './Pages/AuthorPost'
-import Category from './Pages/Category'
-import CreatPost from './Pages/CreatPost'
-import Dashboard from './Pages/Dashboard'
-import DeletePost from './Pages/DeletePost'
-import Edit from './Pages/Edit'
-import ErrorPage from './Pages/ErrorPage'
-import Logout from './Pages/Logout'
-import PostDetail from './Pages/PostDetail'
-import UserProfile from './Pages/UserProfile'
+import { createRoot } from 'react-dom/client';
+import './index.css';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 
+
+import Register from './Pages/Register.jsx';
+import Login from './Pages/Login';
+import Dashboard from './pages/Dashboard.jsx';
+import Profile from './Pages/Profile';
+import SingleUser from './Pages/SingleUser';
+import ProtectedRout from './components/ProtectedRoute.jsx';
+import Home from './Pages/Home.jsx';
+import Layout from './Layout.jsx';
 
 const router = createBrowserRouter([
   {
-    path:'/',
-    element:<Layout/>,
-    children:[
+    path: '/',
+    element: <Layout />,
+    children: [
       {
-        path:'/',
-        element:<Home/>
+        path: '',
+        element: <Home />
       },
       {
-        path:'/login',
-        element:<LoginPage/>
+        path: 'register',
+        element: <Register />
       },
       {
-        path:'/register',
-        element:<Register/>
-      },
-      
-      {
-        path:'/author',
-        element:<Author/>
+        path: 'login',
+        element: <Login />
       },
       {
-        path:'/posts/user/:id',
-        element:<AuthorPost/>
+        path: 'dashboard',
+        element: <ProtectedRout component={<Dashboard />} />
       },
       {
-        path:'/posts/category/:category',
-        element:<Category/>
+        path: 'profile',
+        element: <ProtectedRout component={<Profile />} />
       },
       {
-        path:'/creatpost',
-        element:<CreatPost/>
-      },
-      {
-        path:'/dashboard/:id',
-        element:<Dashboard/>
-      },
-      {
-        path:'/deletepost',
-        element:<DeletePost/>
-      },
-      {
-        path:'/post/:id/edit',
-        element:<Edit/>
-      },
-      {
-        path:'/error',
-        element:<ErrorPage/>
-      },
-      {
-        path:'/logout',
-        element:<Logout/>
-      },
-      {
-        path:'/post/:id',
-        element:<PostDetail/>
-      },
-      {
-        path:'/user/:id',
-        element:<UserProfile/>
-      },
-
-
+        path: 'single-user/:id', 
+        element: <ProtectedRout component={<SingleUser />} />
+      }
     ]
   }
-])
+]);
 
 createRoot(document.getElementById('root')).render(
-  <RouterProvider router={router}/>
-)
+   <RouterProvider router={router} />
+);

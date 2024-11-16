@@ -5,15 +5,13 @@ import End from './components/End'
 
 
 const Layout = () => {
-  
+
   return (
 
     <>
-    <Navbar/>
-    
-    
-    <Outlet/>
-    <End/>
+      <Navbar />
+      <Outlet />
+      <End />
     </>
   )
 }
